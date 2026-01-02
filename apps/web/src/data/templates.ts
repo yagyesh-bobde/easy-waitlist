@@ -127,7 +127,13 @@ export default function MinimalModernTemplate() {
     description: "A bold, eye-catching template with smooth animations",
     category: "bold",
     tags: ["bold", "animated", "waitlist"],
-    code: "// Template code will be added in Phase 5",
+    code: `// Bold Animated Waitlist Template - Full code available in apps/web/src/templates/bold-animated/index.tsx
+// This template features:
+// - Bold hero with large typography and gradient text
+// - Animated statistics section with parallax effects
+// - Waitlist CTA section
+// - Social proof testimonials
+// - Smooth scroll-triggered animations`,
     seo: {
       title: "Bold Animated Waitlist - Landing Page Template",
       description: "A bold, eye-catching template with smooth animations",
@@ -140,7 +146,13 @@ export default function MinimalModernTemplate() {
     description: "An elegant template with beautiful gradient overlays",
     category: "elegant",
     tags: ["elegant", "gradient", "waitlist"],
-    code: "// Template code will be added in Phase 5",
+    code: `// Elegant Gradient Waitlist Template - Full code available in apps/web/src/templates/elegant-gradient/index.tsx
+// This template features:
+// - Elegant hero with gradient overlays
+// - Benefits/features grid with icons
+// - Waitlist form with email validation
+// - Testimonials section with ratings
+// - Fade-in animations on scroll`,
     seo: {
       title: "Elegant Gradient Waitlist - Landing Page Template",
       description: "An elegant template with beautiful gradient overlays",

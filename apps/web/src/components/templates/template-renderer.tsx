@@ -14,9 +14,8 @@ const templateRegistry: Record<
   () => Promise<{ default: React.ComponentType }>
 > = {
   "minimal-modern": () => import("@/templates/minimal-modern"),
-  // Add more templates here as they are created:
-  // "bold-animated": () => import("@/templates/bold-animated"),
-  // "elegant-gradient": () => import("@/templates/elegant-gradient"),
+  "bold-animated": () => import("@/templates/bold-animated"),
+  "elegant-gradient": () => import("@/templates/elegant-gradient"),
 };
 
 /**

@@ -2,9 +2,12 @@
  * Minimal Modern Waitlist Template
  * 
  * A clean, minimalistic landing page template perfect for waitlist signups.
- * This template will be fully implemented in Phase 5.
- * 
- * For now, this is a placeholder that demonstrates the template structure.
+ * Features:
+ * - Animated gradient hero section
+ * - Waitlist signup form with validation
+ * - Feature highlights section
+ * - Smooth scroll animations
+ * - SEO-friendly semantic HTML
  */
 
 import { useState } from "react";
@@ -27,7 +30,7 @@ export default function MinimalModernTemplate() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-muted/20">
+      <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden bg-gradient-to-br from-background via-background to-muted/20 animate-gradient">
         <div className="container mx-auto px-4 py-20 text-center">
           <div className="mx-auto max-w-3xl space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-1000">
             <h1 className="text-5xl font-bold tracking-tight md:text-6xl lg:text-7xl">
