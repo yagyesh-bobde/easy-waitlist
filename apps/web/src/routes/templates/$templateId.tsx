@@ -1,5 +1,6 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import TemplateRenderer from "@/components/templates/template-renderer";
+import CodeBlock from "@/components/templates/code-block";
 
 export const Route = createFileRoute("/templates/$templateId")({
   component: TemplateComponent,
@@ -161,6 +162,25 @@ function TemplateComponent() {
         {/* Template content - rendered by TemplateRenderer */}
         <section className="w-full">
           <TemplateRenderer template={template} />
+        </section>
+
+        {/* Code Display Section */}
+        <section className="container mx-auto max-w-7xl border-t px-4 py-12 md:py-16">
+          <div className="mb-8">
+            <h2 className="mb-2 text-2xl font-bold tracking-tight md:text-3xl">
+              Template Code
+            </h2>
+            <p className="text-muted-foreground">
+              Copy the code below to use this template in your project.
+            </p>
+          </div>
+
+          <CodeBlock
+            code={template.code}
+            language="tsx"
+            title={`${template.name} - Full Template Code`}
+            showLineNumbers={false}
+          />
         </section>
       </main>
     </>
