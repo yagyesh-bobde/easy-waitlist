@@ -1,4 +1,5 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
+import TemplateRenderer from "@/components/templates/template-renderer";
 
 export const Route = createFileRoute("/templates/$templateId")({
   component: TemplateComponent,
@@ -133,26 +134,33 @@ function TemplateComponent() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
       <main className="flex min-h-[calc(100vh-4rem)] flex-col">
-        <section className="container mx-auto max-w-7xl px-4 py-12 md:py-16">
-          <div className="mb-8">
-            <h1 className="mb-4 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
+        {/* Template metadata header - shown above the template */}
+        <section className="container mx-auto max-w-7xl border-b px-4 py-8">
+          <div className="mb-4">
+            <h1 className="mb-2 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
               {template.name}
             </h1>
-            <p className="text-muted-foreground text-lg md:text-xl">
+            <p className="text-muted-foreground text-base md:text-lg">
               {template.description}
             </p>
           </div>
+          {template.tags && template.tags.length > 0 && (
+            <div className="flex flex-wrap gap-2">
+              {template.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="text-muted-foreground rounded-full bg-muted px-3 py-1 text-xs"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </section>
 
-          {/* Template content will be rendered here in next tasks */}
-          <div className="rounded-lg border bg-muted/50 p-8 text-center">
-            <p className="text-muted-foreground">
-              Template preview and code display will be implemented in the next
-              tasks.
-            </p>
-            <p className="text-muted-foreground mt-2 text-sm">
-              Template ID: {template.id}
-            </p>
-          </div>
+        {/* Template content - rendered by TemplateRenderer */}
+        <section className="w-full">
+          <TemplateRenderer template={template} />
         </section>
       </main>
     </>
