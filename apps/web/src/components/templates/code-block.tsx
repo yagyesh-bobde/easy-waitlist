@@ -60,12 +60,35 @@ export default function CodeBlock({
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(code);
+      // Use modern Clipboard API if available
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(code);
+      } else {
+        // Fallback for older browsers or non-secure contexts
+        const textArea = document.createElement("textarea");
+        textArea.value = code;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+          const successful = document.execCommand("copy");
+          if (!successful) {
+            throw new Error("execCommand copy failed");
+          }
+        } finally {
+          document.body.removeChild(textArea);
+        }
+      }
+      
       setCopied(true);
       toast.success("Code copied to clipboard!");
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      toast.error("Failed to copy code");
+      toast.error("Failed to copy code. Please try selecting and copying manually.");
       console.error("Failed to copy code:", err);
     }
   };

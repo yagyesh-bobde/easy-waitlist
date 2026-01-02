@@ -1,6 +1,10 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
+import { useState } from "react";
+import { Copy, Check } from "lucide-react";
+import { toast } from "sonner";
 import TemplateRenderer from "@/components/templates/template-renderer";
 import CodeBlock from "@/components/templates/code-block";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/templates/$templateId")({
   component: TemplateComponent,
@@ -92,6 +96,7 @@ export const Route = createFileRoute("/templates/$templateId")({
 
 function TemplateComponent() {
   const { template } = Route.useLoaderData();
+  const [copiedFullCode, setCopiedFullCode] = useState(false);
 
   // Template should always be available here since loader throws notFound() if missing
   if (!template) {
@@ -112,6 +117,41 @@ function TemplateComponent() {
       </main>
     );
   }
+
+  const handleCopyFullCode = async () => {
+    try {
+      // Use modern Clipboard API if available
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(template.code);
+      } else {
+        // Fallback for older browsers or non-secure contexts
+        const textArea = document.createElement("textarea");
+        textArea.value = template.code;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-999999px";
+        textArea.style.top = "-999999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        
+        try {
+          const successful = document.execCommand("copy");
+          if (!successful) {
+            throw new Error("execCommand copy failed");
+          }
+        } finally {
+          document.body.removeChild(textArea);
+        }
+      }
+      
+      setCopiedFullCode(true);
+      toast.success("Full template code copied to clipboard!");
+      setTimeout(() => setCopiedFullCode(false), 2000);
+    } catch (err) {
+      toast.error("Failed to copy code. Please try selecting and copying manually.");
+      console.error("Failed to copy code:", err);
+    }
+  };
 
   // Structured data for SEO
   const structuredData = {
@@ -137,13 +177,33 @@ function TemplateComponent() {
       <main className="flex min-h-[calc(100vh-4rem)] flex-col">
         {/* Template metadata header - shown above the template */}
         <section className="container mx-auto max-w-7xl border-b px-4 py-8">
-          <div className="mb-4">
-            <h1 className="mb-2 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
-              {template.name}
-            </h1>
-            <p className="text-muted-foreground text-base md:text-lg">
-              {template.description}
-            </p>
+          <div className="mb-4 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+            <div className="flex-1">
+              <h1 className="mb-2 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
+                {template.name}
+              </h1>
+              <p className="text-muted-foreground text-base md:text-lg">
+                {template.description}
+              </p>
+            </div>
+            <Button
+              onClick={handleCopyFullCode}
+              variant="outline"
+              className="gap-2"
+              aria-label="Copy full template code"
+            >
+              {copiedFullCode ? (
+                <>
+                  <Check className="size-4" />
+                  <span>Copied!</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="size-4" />
+                  <span>Copy Full Code</span>
+                </>
+              )}
+            </Button>
           </div>
           {template.tags && template.tags.length > 0 && (
             <div className="flex flex-wrap gap-2">
