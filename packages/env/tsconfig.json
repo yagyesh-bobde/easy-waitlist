@@ -1,0 +1,3 @@
+{
+  "extends": "@easy-waitlist/config/tsconfig.base.json"
+}

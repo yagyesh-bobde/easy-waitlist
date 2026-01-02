@@ -1,0 +1,42 @@
+{
+  "name": "easy-waitlist",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/*"
+    ],
+    "catalog": {
+      "dotenv": "^17.2.2",
+      "zod": "^4.1.13",
+      "@trpc/server": "^11.7.2",
+      "@trpc/client": "^11.7.2"
+    }
+  },
+  "type": "module",
+  "scripts": {
+    "prepare": "husky",
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "check-types": "turbo check-types",
+    "dev:native": "turbo -F native dev",
+    "dev:web": "turbo -F web dev"
+  },
+  "dependencies": {
+    "dotenv": "catalog:",
+    "zod": "catalog:",
+    "@easy-waitlist/env": "workspace:*"
+  },
+  "devDependencies": {
+    "turbo": "^2.6.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "typescript": "^5",
+    "@types/node": "^22.13.14",
+    "@easy-waitlist/config": "workspace:*"
+  },
+  "lint-staged": {
+    "**/*.{js,mjs,cjs,jsx,ts,mts,cts,tsx,vue,astro,svelte}": "true"
+  },
+  "packageManager": "bun@1.3.2"
+}
