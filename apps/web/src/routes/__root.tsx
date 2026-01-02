@@ -26,7 +26,42 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "My App",
+        title: "Landing Page Template Platform - Modern Waitlist Templates",
+      },
+      {
+        name: "description",
+        content:
+          "Browse modern, animated landing page templates designed for waitlists. Copy code blocks directly and launch faster.",
+      },
+      {
+        name: "keywords",
+        content: "landing page templates, waitlist templates, website templates, copy code",
+      },
+      {
+        property: "og:title",
+        content: "Landing Page Template Platform - Modern Waitlist Templates",
+      },
+      {
+        property: "og:description",
+        content:
+          "Browse modern, animated landing page templates designed for waitlists. Copy code blocks directly and launch faster.",
+      },
+      {
+        property: "og:type",
+        content: "website",
+      },
+      {
+        name: "twitter:card",
+        content: "summary_large_image",
+      },
+      {
+        name: "twitter:title",
+        content: "Landing Page Template Platform - Modern Waitlist Templates",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Browse modern, animated landing page templates designed for waitlists. Copy code blocks directly and launch faster.",
       },
     ],
     links: [
