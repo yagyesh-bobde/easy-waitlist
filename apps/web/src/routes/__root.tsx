@@ -51,6 +51,14 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
         content: "website",
       },
       {
+        property: "og:url",
+        content: "https://easy-waitlist.com",
+      },
+      {
+        property: "og:image",
+        content: "https://easy-waitlist.com/og-image.png",
+      },
+      {
         name: "twitter:card",
         content: "summary_large_image",
       },
@@ -62,6 +70,10 @@ export const Route = createRootRouteWithContext<RouterAppContext>()({
         name: "twitter:description",
         content:
           "Browse modern, animated landing page templates designed for waitlists. Copy code blocks directly and launch faster.",
+      },
+      {
+        name: "twitter:image",
+        content: "https://easy-waitlist.com/og-image.png",
       },
     ],
     links: [

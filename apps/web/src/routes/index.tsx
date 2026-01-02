@@ -1,15 +1,37 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const Route = createFileRoute("/")({
   component: HomeComponent,
 });
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Landing Page Template Platform",
+  description:
+    "Browse modern, animated landing page templates designed for waitlists. Copy code blocks directly and launch faster.",
+  url: "https://easy-waitlist.com",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: "https://easy-waitlist.com/templates?q={search_term_string}",
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
+
 function HomeComponent() {
   return (
-    <div className="flex min-h-[calc(100vh-4rem)] flex-col">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <main className="flex min-h-[calc(100vh-4rem)] flex-col">
       {/* Hero Section */}
       <section className="flex flex-1 flex-col items-center justify-center px-4 py-16 md:py-24">
         <div className="container mx-auto max-w-4xl text-center">
@@ -109,6 +131,7 @@ function HomeComponent() {
           </Button>
         </div>
       </section>
-    </div>
+      </main>
+    </>
   );
 }
