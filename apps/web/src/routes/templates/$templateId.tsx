@@ -177,6 +177,16 @@ function TemplateComponent() {
       <main className="flex min-h-[calc(100vh-4rem)] flex-col">
         {/* Template metadata header - shown above the template */}
         <section className="container mx-auto max-w-7xl border-b px-4 py-8">
+          {template.previewImage && (
+            <div className="mb-6">
+              <img
+                src={template.previewImage}
+                alt={`${template.name} preview`}
+                className="w-full rounded-lg border object-cover shadow-lg"
+                loading="lazy"
+              />
+            </div>
+          )}
           <div className="mb-4 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
             <div className="flex-1">
               <h1 className="mb-2 text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl">
@@ -207,7 +217,7 @@ function TemplateComponent() {
           </div>
           {template.tags && template.tags.length > 0 && (
             <div className="flex flex-wrap gap-2">
-              {template.tags.map((tag) => (
+              {template.tags.map((tag: string) => (
                 <span
                   key={tag}
                   className="text-muted-foreground rounded-full bg-muted px-3 py-1 text-xs"
