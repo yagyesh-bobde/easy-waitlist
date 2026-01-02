@@ -1,0 +1,3 @@
+[submodule ".cursor/agent-docs"]
+	path = .cursor/agent-docs
+	url = git@github.com:twofourlabs/agent-docs.git
